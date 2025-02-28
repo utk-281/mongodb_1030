@@ -629,3 +629,127 @@ db.emp.aggregate([
     },
   },
 ]);
+
+db.usersInfo.aggregate([
+  {
+    $lookup: {
+      from: "addressInfo",
+      foreignField: "_id",
+      localField: "address",
+      as: "locationInfo",
+    },
+  },
+]);
+
+db.emp.aggregate([
+  {
+    $lookup: {
+      from: "dept",
+      foreignField: "deptNo",
+      localField: "deptNo",
+      as: "dept_details",
+    },
+  },
+  {
+    $unwind: "$dept_details",
+  },
+  {
+    $project: {
+      employeeName: "$empName",
+      _id: 0,
+      location: "$dept_details.loc",
+    },
+  },
+]);
+
+db.dept.aggregate([
+  {
+    $lookup: {
+      from: "emp",
+      foreignField: "deptNo",
+      localField: "deptNo",
+      as: "emp_details",
+    },
+  },
+]);
+
+db.emp.aggregate([
+  {
+    $lookup: {
+      from: "dept",
+      foreignField: "deptNo",
+      localField: "deptNo",
+      as: "dept",
+    },
+  },
+  {
+    $unwind: "$dept",
+  },
+  {
+    $match: {
+      " dept.dName": "accounting",
+    },
+  },
+  {
+    $project: {
+      sal: 1,
+      "dept.dName": 1,
+    },
+  },
+]);
+
+db.contactInfo.insertMany([
+  { city: "Noida", phone: 12345678, email: "value1", gitHub: "github.com/something" },
+  { city: "Banglore", phone: 9876543, email: "value2", gitHub: "github.com/something12" },
+]);
+
+db.usersInfo.aggregate([
+  {
+    $lookup: {
+      from: "addressInfo",
+      foreignField: "_id",
+      localField: "address",
+      as: "addressInfo",
+    },
+  },
+  {
+    $unwind: "$addressInfo",
+  },
+  {
+    $lookup: {
+      from: "contactInfo",
+      foreignField: "_id",
+      localField: "addressInfo.contact",
+      as: "contactInfo",
+    },
+  },
+  {
+    $unwind: "$contactInfo",
+  },
+]);
+
+// Q3) display the emp details whose job is same as miller
+
+db.emp.aggregate([
+  {
+    $match: {
+      empName: "miller",
+    },
+  },
+  {
+    $lookup: {
+      from: "emp",
+      let: { mJob: "$job" },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $eq: ["$job", "$$mJob"],
+            },
+          },
+        },
+      ],
+      as: "sameJOb",
+    },
+  },
+]);
