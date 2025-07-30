@@ -1,0 +1,15 @@
+[
+  {
+    "name": "abc",
+    "age": 33,
+    "id": 123.345,
+    "email": "abc@gmail.com",
+    "key4": true,
+    "key5": null
+  },
+  {
+    "name": "def",
+    "age": 33,
+    "id": "u7654"
+  }
+]
