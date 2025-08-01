@@ -62,7 +62,7 @@ let emp3 = {
 
 //~ scaling ==> altering the size, capacity or performance of something (servers/laptop)
 
-// <<>> https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.12-signed.msi ==> server
+// <<>> https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.12-signed.msi ==> server (mongod)
 // <<>> https://downloads.mongodb.com/compass/mongodb-compass-1.46.6-win32-x64.exe ==> compass
 // <<>> https://downloads.mongodb.com/compass/mongosh-2.5.6-x64.msi ==> mongosh
 
@@ -81,5 +81,36 @@ let emp3 = {
         {
             name:"abc",
             age:23
-        }
+        },
+        {
+            name:"abc",
+            age:23
+        },
+        {
+            name:"abc",
+            age:23
+        },
+        {
+            name:"abc",
+            age:23
+        },
 */
+
+//& document : it is like js object, which stores data in key-value pairs. each key-value pair is separated by a comma
+
+//& collection : it is group of documents. ==> (table)
+
+//& database : it is group of collections. ==> (database)
+
+//! steps to install mongod (server)
+// next >> next >> complete >> next >> next >> install
+// mongodb://localhost:27017 ==> domain name
+// mongodb://127.0.0.1:27017 ==> i/p address
+
+// http://localhost:9000
+
+//! steps to install mongosh --> (mongo shell) (cli) ==> command line interface
+// next >> next >> install
+
+//! mongodb compass ==> it is a GUI (graphical user interface), using which we can interact with database visually without any single line of code.
+//? interact means ==> CRUD
