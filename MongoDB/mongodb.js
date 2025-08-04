@@ -113,4 +113,54 @@ let emp3 = {
 // next >> next >> install
 
 //! mongodb compass ==> it is a GUI (graphical user interface), using which we can interact with database visually without any single line of code.
-//? interact means ==> CRUD
+//? interact means ==> CRUD, complex operation like aggregation, indexing....
+
+//! mongodb shell (mongosh) ==> shell/interface. it a cli (command line interface) to interact with database. if i want to interact with database, i need to write commands in shell. this shell is build using javascript.
+//~ to tap into the shell, open cmd ==> mongosh
+//~ to get out of the shell ==> ctrl + c or .exit
+
+//& ─── commands for shell ────────────────────────────────────────────────────────────────
+
+//& 1) to list all the databases
+// show dbs or show databases
+
+//& 2) --> to create a new database
+//& 2) --> to switch to a database
+// use <databaseName>
+// example ==> use school
+//? if the database name is already present, then it will be switched otherwise it will be created.
+
+//& 3) to create a new collection ==> createCollection()
+// db.createCollection("collectionName")
+// example ==> db.createCollection("students")
+
+//! after every operation, refresh the compass to see the changes
+
+//& 4) to display the list of all the collections present in a db
+// show collections
+
+//& 5) to delete a collection present in a db ==> drop()
+// db.collectionName.drop()
+// example ==> db.teachers.drop()
+
+//& 6) to delete a database ==> dropDatabase()
+// db.dropDatabase()
+// example ==> db.dropDatabase()
+
+//& ─── CRUD ────────────────────────────────────────────────────────────────
+
+//& 7) to insert a single document --> {}
+// db.collectionName.insertOne({})
+// db.students.insertOne({name:"stu1", rollNo:123})
+/*
+{
+  acknowledged: true, --> successfully inserted
+  insertedId: ObjectId('6890506e5e9163383350eb67') --> inserted _id
+}
+ */
+
+//! create a college db, inside this two collections (students and teachers)
+
+//! BSON ==> binary JSON (javascript object notation). it binary representation of JSON. after converting to BSON, we are getting some extra datatypes like ObjectID, date, Regex, etc..
+//! operations are faster than JSON because it stores data in binary format
+//! it is not human readable
