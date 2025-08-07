@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "L001",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400001",
+    "address": "101, Andheri East, Mumbai",
+    "country": "India"
+  },
+  {
+    "_id": "L002",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "pincode": "560001",
+    "address": "202, Koramangala, Bengaluru",
+    "country": "India"
+  },
+  {
+    "_id": "L003",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "pincode": "500001",
+    "address": "303, HITEC City, Hyderabad",
+    "country": "India"
+  },
+  {
+    "_id": "L004",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "pincode": "411001",
+    "address": "404, Baner Road, Pune",
+    "country": "India"
+  },
+  {
+    "_id": "L005",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "pincode": "600001",
+    "address": "505, T Nagar, Chennai",
+    "country": "India"
+  },
+  {
+    "_id": "L006",
+    "city": "Delhi",
+    "state": "Delhi",
+    "pincode": "110001",
+    "address": "606, Connaught Place, Delhi",
+    "country": "India"
+  }
+]

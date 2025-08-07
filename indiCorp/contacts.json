@@ -1,0 +1,17 @@
+[
+  { "_id": "C001", "email": "arjun.mehta@example.com", "phone": "9876543210" },
+  { "_id": "C002", "email": "neha.verma@example.com", "phone": "9823456789" },
+  { "_id": "C003", "email": "ravi.iyer@example.com", "phone": "9811122233" },
+  { "_id": "C004", "email": "priya.sharma@example.com", "phone": "9845567890" },
+  { "_id": "C005", "email": "vikram.desai@example.com", "phone": "9833344455" },
+  { "_id": "C006", "email": "sneha.patil@example.com", "phone": "9877890123" },
+  { "_id": "C007", "email": "rohit.shetty@example.com", "phone": "9888888888" },
+  { "_id": "C008", "email": "tanvi.rao@example.com", "phone": "9899999999" },
+  { "_id": "C009", "email": "amit.bhatt@example.com", "phone": "9765432100" },
+  { "_id": "C010", "email": "deepika.joshi@example.com", "phone": "9777777777" },
+  { "_id": "C011", "email": "farhan.khan@example.com", "phone": "9755555555" },
+  { "_id": "C012", "email": "ritika.sen@example.com", "phone": "9744444444" },
+  { "_id": "C013", "email": "karan.malhotra@example.com", "phone": "9733333333" },
+  { "_id": "C014", "email": "megha.kapoor@example.com", "phone": "9722222222" },
+  { "_id": "C015", "email": "nikhil.raj@example.com", "phone": "9711111111" }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "P001",
+    "name": "Internal ERP System",
+    "departmentId": "D001",
+    "budget": 2500000,
+    "techStack": ["Java", "Spring Boot", "MySQL", "Docker"],
+    "employees": ["E001", "E002", "E007", "E011"]
+  },
+  {
+    "_id": "P002",
+    "name": "AI Chatbot",
+    "departmentId": "D001",
+    "budget": 1800000,
+    "techStack": ["Python", "TensorFlow", "Flask", "MongoDB"],
+    "employees": ["E004", "E006", "E013"]
+  },
+  {
+    "_id": "P003",
+    "name": "Client Web Portal",
+    "departmentId": "D001",
+    "budget": 2100000,
+    "techStack": ["Node.js", "Express", "React", "PostgreSQL"],
+    "employees": ["E001", "E005", "E009", "E014"]
+  },
+  {
+    "_id": "P004",
+    "name": "Cloud Migration",
+    "departmentId": "D001",
+    "budget": 3000000,
+    "techStack": ["AWS", "Terraform", "Kubernetes", "Java"],
+    "employees": ["E003", "E006", "E010", "E015"]
+  },
+  {
+    "_id": "P005",
+    "name": "Marketing Campaign",
+    "departmentId": "D003",
+    "budget": 900000,
+    "techStack": ["Photoshop", "Illustrator", "Google Ads", "HTML"],
+    "employees": ["E008", "E012", "E014"]
+  },
+  {
+    "_id": "P006",
+    "name": "Recruitment Drive",
+    "departmentId": "D002",
+    "budget": 500000,
+    "techStack": ["Excel", "Python", "LinkedIn API"],
+    "employees": ["E004", "E013"]
+  },
+  {
+    "_id": "P007",
+    "name": "Infrastructure Optimization",
+    "departmentId": "D001",
+    "budget": 2750000,
+    "techStack": ["Ansible", "Grafana", "Prometheus", "Docker"],
+    "employees": ["E002", "E005", "E007", "E009"]
+  }
+]

@@ -1,0 +1,167 @@
+[
+  {
+    "_id": "E001",
+    "name": "Arjun Mehta",
+    "skills": ["JavaScript", "MongoDB", "Node.js"],
+    "locationId": "L001",
+    "contactId": "C001",
+    "departmentId": "D001",
+    "projectIds": ["P001", "P003"],
+    "salary": 950000,
+    "joinedDate": { "$date": "2019-06-12T00:00:00Z" }
+  },
+  {
+    "_id": "E002",
+    "name": "Neha Verma",
+    "skills": ["Python", "Django", "SQL"],
+    "locationId": "L002",
+    "contactId": "C002",
+    "departmentId": "D001",
+    "projectIds": ["P002"],
+    "salary": 870000,
+    "joinedDate": { "$date": "2020-08-01T00:00:00Z" }
+  },
+  {
+    "_id": "E003",
+    "name": "Ravi Iyer",
+    "skills": ["Node.js", "AWS", "Docker"],
+    "locationId": "L003",
+    "contactId": "C003",
+    "departmentId": "D001",
+    "projectIds": ["P001", "P004"],
+    "salary": 1100000,
+    "joinedDate": { "$date": "2018-01-20T00:00:00Z" }
+  },
+  {
+    "_id": "E004",
+    "name": "Priya Sharma",
+    "skills": ["Marketing", "Content", "SEO"],
+    "locationId": "L004",
+    "contactId": "C004",
+    "departmentId": "D003",
+    "projectIds": ["P005"],
+    "salary": 650000,
+    "joinedDate": { "$date": "2021-03-15T00:00:00Z" }
+  },
+  {
+    "_id": "E005",
+    "name": "Vikram Desai",
+    "skills": ["Excel", "Tally", "Taxation"],
+    "locationId": "L001",
+    "contactId": "C005",
+    "departmentId": "D004",
+    "projectIds": [],
+    "salary": 540000,
+    "joinedDate": { "$date": "2017-11-30T00:00:00Z" }
+  },
+  {
+    "_id": "E006",
+    "name": "Sneha Patil",
+    "skills": ["People Management", "Recruitment"],
+    "locationId": "L002",
+    "contactId": "C006",
+    "departmentId": "D002",
+    "projectIds": ["P006"],
+    "salary": 720000,
+    "joinedDate": { "$date": "2019-04-01T00:00:00Z" }
+  },
+  {
+    "_id": "E007",
+    "name": "Rohit Shetty",
+    "skills": ["React", "Redux", "TypeScript"],
+    "locationId": "L003",
+    "contactId": "C007",
+    "departmentId": "D001",
+    "projectIds": ["P003", "P004"],
+    "salary": 980000,
+    "joinedDate": { "$date": "2022-02-10T00:00:00Z" }
+  },
+  {
+    "_id": "E008",
+    "name": "Tanvi Rao",
+    "skills": ["Design", "Illustrator", "UI/UX"],
+    "locationId": "L004",
+    "contactId": "C008",
+    "departmentId": "D003",
+    "projectIds": ["P005"],
+    "salary": 700000,
+    "joinedDate": { "$date": "2021-07-22T00:00:00Z" }
+  },
+  {
+    "_id": "E009",
+    "name": "Amit Bhatt",
+    "skills": ["Java", "Spring", "Microservices"],
+    "locationId": "L001",
+    "contactId": "C009",
+    "departmentId": "D001",
+    "projectIds": ["P001"],
+    "salary": 1050000,
+    "joinedDate": { "$date": "2016-09-18T00:00:00Z" }
+  },
+  {
+    "_id": "E010",
+    "name": "Deepika Joshi",
+    "skills": ["HR Policies", "Compliance"],
+    "locationId": "L002",
+    "contactId": "C010",
+    "departmentId": "D002",
+    "projectIds": [],
+    "salary": 600000,
+    "joinedDate": { "$date": "2020-12-01T00:00:00Z" }
+  },
+  {
+    "_id": "E011",
+    "name": "Farhan Khan",
+    "skills": ["Go", "Kubernetes", "Cloud"],
+    "locationId": "L003",
+    "contactId": "C011",
+    "departmentId": "D001",
+    "projectIds": ["P007"],
+    "salary": 1200000,
+    "joinedDate": { "$date": "2018-07-14T00:00:00Z" }
+  },
+  {
+    "_id": "E012",
+    "name": "Ritika Sen",
+    "skills": ["Photoshop", "Figma", "Design Systems"],
+    "locationId": "L004",
+    "contactId": "C012",
+    "departmentId": "D003",
+    "projectIds": ["P005"],
+    "salary": 780000,
+    "joinedDate": { "$date": "2022-06-30T00:00:00Z" }
+  },
+  {
+    "_id": "E013",
+    "name": "Karan Malhotra",
+    "skills": ["Accounting", "GST", "Audit"],
+    "locationId": "L001",
+    "contactId": "C013",
+    "departmentId": "D004",
+    "projectIds": [],
+    "salary": 630000,
+    "joinedDate": { "$date": "2015-10-01T00:00:00Z" }
+  },
+  {
+    "_id": "E014",
+    "name": "Megha Kapoor",
+    "skills": ["Onboarding", "People Analytics"],
+    "locationId": "L002",
+    "contactId": "C014",
+    "departmentId": "D002",
+    "projectIds": ["P006"],
+    "salary": 710000,
+    "joinedDate": { "$date": "2019-09-09T00:00:00Z" }
+  },
+  {
+    "_id": "E015",
+    "name": "Nikhil Raj",
+    "skills": ["C++", "Data Structures", "System Design"],
+    "locationId": "L003",
+    "contactId": "C015",
+    "departmentId": "D001",
+    "projectIds": ["P004", "P007"],
+    "salary": 1130000,
+    "joinedDate": { "$date": "2021-01-05T00:00:00Z" }
+  }
+]

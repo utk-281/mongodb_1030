@@ -272,3 +272,17 @@ db.students.find({ gender: "female" }, { name: 1, gender: 1, _id: 0 });
 //! 11) to update multiple documents -->
 // method name ==> updateMany()
 // db.collectionName.updateMany({filter}, {updation value}, {options})
+
+//! 12) to delete single document
+// method name ==> deleteOne({filter})
+// method name ==> deleteOne({}) // in case of no condition, passing empty object is mandatory
+
+// db.collectionName.deleteOne({name:"abc"})
+// db.collectionName.deleteOne({})
+db.students.deleteOne({ name: "ashwin" });
+
+//! 13) to delete multiple documents
+// method name ==> deleteMany({filter})
+db.students.deleteMany({ gender: "male" });
+
+db.students.deleteMany({}); // all documents will get deleted
