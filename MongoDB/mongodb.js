@@ -286,3 +286,66 @@ db.students.deleteOne({ name: "ashwin" });
 db.students.deleteMany({ gender: "male" });
 
 db.students.deleteMany({}); // all documents will get deleted
+// employees --> locationId --> location collection
+// employees --> locationId --> location collection
+// employees --> contactId --> contact collection
+
+//& ───────────────────────────────────────────────────────────────────
+
+//& ─── OPERATORS ────────────────────────────────────────────────────────────────
+//! query operators
+// ==> comparison operators (greater than, less than etc..)
+// ==> logical operators (logical and, or, etc..)
+// ==> array operators (size, all, elemMatch)
+// ==> evaluation operators (regex, expr, mod, etc..)
+// ==> element operators (exists, type)
+//! update operators
+// ==> field update op (set, unset, rename)
+// ==> arithmetic update op (inc, mul, max, etc)
+// ==> array update op (push, pull, etc)
+//! aggregation operators
+// ==> pipeline stages op (match, group, etc..)
+// ==> accumulator op (sum, avg, etc..)
+// ==> arithmetic and date op (add, subtract, month, year, etc..)
+//! projection operators ($, $slice... )
+//! geospatial operators (will not be covered)
+
+db.emp.find({ dept: { $eq: 20 } });
+
+db.emp.find({ sal: { $gt: 3500 } }, { empName: 1, sal: 1, _id: 0, dept: 0 });
+
+db.emp.find({ deptNo: 10, deptNo: 20 }, { empName: 1, sal: 1, deptNo: 1, _id: 0 });
+
+db.emp.find(
+  {
+    sal: { $lte: 2500 },
+    sal: { $gte: 1200 },
+  },
+  { empName: 1, _id: 0, sal: 1 }
+);
+
+db.emp.find(
+  {
+    $and: [
+      { sal: { $gt: 1200 } }, // condition1
+      { sal: { $lt: 2500 } }, // condition2
+    ],
+  },
+  { empName: 1, sal: 1, _id: 0 }
+);
+
+db.emp.find(
+  {
+    $nor: [
+      { deptNo: 20 }, // c2
+      { deptNo: { $eq: 10 } }, // c1
+    ],
+  },
+  {
+    deptNo: 1,
+    _id: 0,
+  }
+);
+// .count(); --> cursor
+
+// https://excalidraw.com/#json=WuuWaG4Oif6NPOaRhO23z,3PPYh4OFTc35c9c4QJ5osQ
