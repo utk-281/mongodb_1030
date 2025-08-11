@@ -23,7 +23,7 @@ let object = {
 // console.log(object.age); // 23
 // console.log(object["age"]);
 // console.log(object.skills[2]); // js
-// console.log(object.address.state); // UP
+// console.log("object.address.state"); // UP
 // // console.log(object.1)
 // console.log(object[1]);
 // console.log(object["1 - username"]);

@@ -349,3 +349,66 @@ db.emp.find(
 // .count(); --> cursor
 
 // https://excalidraw.com/#json=WuuWaG4Oif6NPOaRhO23z,3PPYh4OFTc35c9c4QJ5osQ
+
+// fetch all the students who are living in UP
+db.students.find({ "address.state": "up" });
+//! if we are fetching based on nested values, then double quotes should be used
+
+// fetch all the students whose hobby is football
+db.students.find({ hobbies: "cooking" });
+
+// fetch all the students whose hobbies are football and guitar
+db.students.find({ hobbies: ["guitar", "football"] });
+
+db.scores.insertMany([
+  {
+    name: "abc",
+    age: 23,
+    scores: [
+      { high: 120, name: "cod" },
+      { high: 340, name: "battlefield" },
+      { high: 200, name: "counter strike" },
+      { high: 250, name: "valorant" },
+    ],
+  },
+]);
+
+db.survey.insertMany([
+  {
+    _id: 1,
+    results: [
+      { product: "abc", score: 10 },
+      { product: "xyz", score: 5 },
+    ],
+  },
+  {
+    _id: 2,
+    results: [
+      { product: "abc", score: 8 },
+      { product: "xyz", score: 7 },
+    ],
+  },
+  {
+    _id: 3,
+    results: [
+      { product: "abc", score: 7 },
+      { product: "xyz", score: 8 },
+    ],
+  },
+  {
+    _id: 4,
+    results: [
+      { product: "abc", score: 7 },
+      { product: "def", score: 8 },
+    ],
+  },
+  { _id: 5, results: { product: "xyz", score: 7 } },
+]);
+
+db.survey.find({ results: "abc" }); // this will not give any op
+db.survey.find({
+  results: {
+    $elemMatch: { product: "abc", score: { $gt: 9 } },
+  },
+});
+// https://excalidraw.com/#json=Ld7m4DNRA-GDCuiJxGfEb,1MxCfB0slmzOGCzxXDq9JA
