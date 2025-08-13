@@ -412,3 +412,28 @@ db.survey.find({
   },
 });
 // https://excalidraw.com/#json=Ld7m4DNRA-GDCuiJxGfEb,1MxCfB0slmzOGCzxXDq9JA
+
+db.emp.find({ $expr: { $gte: ["$sal", 5000] } });
+// syntax for $expr ==> ( { $expr: { $operator: [value1, value2] } } )
+
+db.emp.find({ totalHoursWorked: { $exists: false } });
+
+db.emp.find({ sal: { $type: "string" } });
+
+// https://excalidraw.com/#json=OmbMTdO4xDqvvYCwnSLqp,TevpO0SviNSPNaInqHJZEA
+
+db.students.updateOne(
+  { name: "chetna" }, // filter part
+  {
+    $set: { name: "a. chetna", age: 26, email: "chetna@gmail.com" }, // updation part
+  }
+);
+
+db.emp.updateOne(
+  { _id: ObjectId("66a23517b5c6990483c4e4a3") },
+  {
+    $unset: { joiningDate: 123467 },
+  }
+);
+
+// https://excalidraw.com/#json=jjS-9ySHsAtCsOZFx9dOI,5HT6GAY_p0HcDJdwX-1LVg

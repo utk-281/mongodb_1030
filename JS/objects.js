@@ -31,6 +31,14 @@ let object = {
 // console.log(object["userName"]);
 // console.log(object["address"]["pincode"]);
 
-console.log(object);
+// console.log(object);
 // we can use duplicate keys but it is not recommended, as it overrides the data
 //! we can store all the datatypes in js objects
+
+let a = -0;
+
+if (a) {
+  console.log(a, ": is truthy");
+} else {
+  console.log("falsy");
+}
