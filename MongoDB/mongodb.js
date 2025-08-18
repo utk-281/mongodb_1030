@@ -166,17 +166,17 @@ let emp3 = {
 //! it is not human readable
 
 db.students.insertOne({
-  name: "sirisha",
-  rollNo: "ABC1237",
+  name: 'sirisha',
+  rollNo: 'ABC1237',
   skills: {
-    fE: ["reactjs"],
-    bE: ["nodejs", "express"],
-    dB: ["dynamodb", "redisdb", "mongodb"],
+    fE: ['reactjs'],
+    bE: ['nodejs', 'express'],
+    dB: ['dynamodb', 'redisdb', 'mongodb'],
   },
-  address: { city: "noida", state: "up" },
-  gender: "female",
+  address: { city: 'noida', state: 'up' },
+  gender: 'female',
   age: 25,
-  hobbies: ["cooking", "football"],
+  hobbies: ['cooking', 'football'],
   _id: 1234567890,
 });
 
@@ -203,30 +203,30 @@ db.students.insertOne({
 
 db.students.insertMany([
   {
-    name: "shree",
-    rollNo: "ABC1238",
+    name: 'shree',
+    rollNo: 'ABC1238',
     skills: {
-      fE: ["reactjs"],
-      bE: ["nodejs", "express", "deno"],
-      dB: ["mongodb"],
+      fE: ['reactjs'],
+      bE: ['nodejs', 'express', 'deno'],
+      dB: ['mongodb'],
     },
-    address: { city: "chennai", state: "tn" },
-    gender: "female",
+    address: { city: 'chennai', state: 'tn' },
+    gender: 'female',
     age: 25,
-    hobbies: ["gaming", "cricket"],
+    hobbies: ['gaming', 'cricket'],
   },
   {
-    name: "divya",
-    rollNo: "ABC1239",
+    name: 'divya',
+    rollNo: 'ABC1239',
     skills: {
-      fE: ["html", "css"],
-      bE: ["java"],
-      dB: ["mysql"],
+      fE: ['html', 'css'],
+      bE: ['java'],
+      dB: ['mysql'],
     },
-    address: { city: "banglore", state: "ka" },
-    gender: "female",
+    address: { city: 'banglore', state: 'ka' },
+    gender: 'female',
     age: 25,
-    hobbies: ["gaming", "music"],
+    hobbies: ['gaming', 'music'],
   },
 ]);
 
@@ -237,15 +237,15 @@ db.students.insertMany([
 
 //? {filter} ==> if you want to fetch based on some condition
 //! find the details of the student whose name is "sirisha"
-db.students.findOne({ name: "sirisha" });
+db.students.findOne({ name: 'sirisha' });
 
-db.students.findOne({ gender: "male" });
+db.students.findOne({ gender: 'male' });
 
 //? {projections} ==> it is used to display/hide particular fields of the fetched document.
 //       { keyName: 1 } ==> displaying
 //       { keyName: 0 } ==> hiding
 //! find the name and address of the student whose name is "sirisha"
-db.students.findOne({ name: "sirisha" }, { name: 1, address: 1, _id: 0 });
+db.students.findOne({ name: 'sirisha' }, { name: 1, address: 1, _id: 0 });
 
 //! NOTE:================
 //  when ever projection is used by default _id is set to 1.
@@ -255,13 +255,13 @@ db.students.findOne({ name: "sirisha" }, { name: 1, address: 1, _id: 0 });
 // db.collectionName.find({filter}, {projections}, {options})
 
 //! find the details of all female students
-db.students.find({ gender: "female" });
+db.students.find({ gender: 'female' });
 
 db.students.find({}); // if not passing any conditions, then all documents will be fetched.
 db.students.find();
 
 //! show the name and gender of all female students
-db.students.find({ gender: "female" }, { name: 1, gender: 1, _id: 0 });
+db.students.find({ gender: 'female' }, { name: 1, gender: 1, _id: 0 });
 
 // db.students.find({ age: { $gt: 24 } });
 
@@ -279,11 +279,11 @@ db.students.find({ gender: "female" }, { name: 1, gender: 1, _id: 0 });
 
 // db.collectionName.deleteOne({name:"abc"})
 // db.collectionName.deleteOne({})
-db.students.deleteOne({ name: "ashwin" });
+db.students.deleteOne({ name: 'ashwin' });
 
 //! 13) to delete multiple documents
 // method name ==> deleteMany({filter})
-db.students.deleteMany({ gender: "male" });
+db.students.deleteMany({ gender: 'male' });
 
 db.students.deleteMany({}); // all documents will get deleted
 // employees --> locationId --> location collection
@@ -351,24 +351,24 @@ db.emp.find(
 // https://excalidraw.com/#json=WuuWaG4Oif6NPOaRhO23z,3PPYh4OFTc35c9c4QJ5osQ
 
 // fetch all the students who are living in UP
-db.students.find({ "address.state": "up" });
+db.students.find({ 'address.state': 'up' });
 //! if we are fetching based on nested values, then double quotes should be used
 
 // fetch all the students whose hobby is football
-db.students.find({ hobbies: "cooking" });
+db.students.find({ hobbies: 'cooking' });
 
 // fetch all the students whose hobbies are football and guitar
-db.students.find({ hobbies: ["guitar", "football"] });
+db.students.find({ hobbies: ['guitar', 'football'] });
 
 db.scores.insertMany([
   {
-    name: "abc",
+    name: 'abc',
     age: 23,
     scores: [
-      { high: 120, name: "cod" },
-      { high: 340, name: "battlefield" },
-      { high: 200, name: "counter strike" },
-      { high: 250, name: "valorant" },
+      { high: 120, name: 'cod' },
+      { high: 340, name: 'battlefield' },
+      { high: 200, name: 'counter strike' },
+      { high: 250, name: 'valorant' },
     ],
   },
 ]);
@@ -377,63 +377,77 @@ db.survey.insertMany([
   {
     _id: 1,
     results: [
-      { product: "abc", score: 10 },
-      { product: "xyz", score: 5 },
+      { product: 'abc', score: 10 },
+      { product: 'xyz', score: 5 },
     ],
   },
   {
     _id: 2,
     results: [
-      { product: "abc", score: 8 },
-      { product: "xyz", score: 7 },
+      { product: 'abc', score: 8 },
+      { product: 'xyz', score: 7 },
     ],
   },
   {
     _id: 3,
     results: [
-      { product: "abc", score: 7 },
-      { product: "xyz", score: 8 },
+      { product: 'abc', score: 7 },
+      { product: 'xyz', score: 8 },
     ],
   },
   {
     _id: 4,
     results: [
-      { product: "abc", score: 7 },
-      { product: "def", score: 8 },
+      { product: 'abc', score: 7 },
+      { product: 'def', score: 8 },
     ],
   },
-  { _id: 5, results: { product: "xyz", score: 7 } },
+  { _id: 5, results: { product: 'xyz', score: 7 } },
 ]);
 
-db.survey.find({ results: "abc" }); // this will not give any op
+db.survey.find({ results: 'abc' }); // this will not give any op
 db.survey.find({
   results: {
-    $elemMatch: { product: "abc", score: { $gt: 9 } },
+    $elemMatch: { product: 'abc', score: { $gt: 9 } },
   },
 });
 // https://excalidraw.com/#json=Ld7m4DNRA-GDCuiJxGfEb,1MxCfB0slmzOGCzxXDq9JA
 
-db.emp.find({ $expr: { $gte: ["$sal", 5000] } });
+db.emp.find({ $expr: { $gte: ['$sal', 5000] } });
 // syntax for $expr ==> ( { $expr: { $operator: [value1, value2] } } )
 
 db.emp.find({ totalHoursWorked: { $exists: false } });
 
-db.emp.find({ sal: { $type: "string" } });
+db.emp.find({ sal: { $type: 'string' } });
 
 // https://excalidraw.com/#json=OmbMTdO4xDqvvYCwnSLqp,TevpO0SviNSPNaInqHJZEA
 
 db.students.updateOne(
-  { name: "chetna" }, // filter part
+  { name: 'chetna' }, // filter part
   {
-    $set: { name: "a. chetna", age: 26, email: "chetna@gmail.com" }, // updation part
+    $set: { name: 'a. chetna', age: 26, email: 'chetna@gmail.com' }, // updation part
   }
 );
 
 db.emp.updateOne(
-  { _id: ObjectId("66a23517b5c6990483c4e4a3") },
+  { _id: ObjectId('66a23517b5c6990483c4e4a3') },
   {
     $unset: { joiningDate: 123467 },
   }
 );
 
 // https://excalidraw.com/#json=jjS-9ySHsAtCsOZFx9dOI,5HT6GAY_p0HcDJdwX-1LVg
+
+db.students.updateOne(
+  { $and: [{ name: 'qwerty' }, { age: 67 }, { email: 'abc@gmail.com' }] },
+  { $set: { phone: '345678765' } },
+  { upsert: true }
+);
+
+// {}
+db.students.updateMany({}, { $inc: { age: 2 } });
+db.students.updateMany({}, { $mul: { salary: 2 } });
+
+db.students.updateOne({ rollNo: 'ABC1236' }, { $push: { hobbies: 'gaming' } });
+
+// https://excalidraw.com/#json=BCone4tLXiEPefKEvxHHl,QZ_0J6CF2fJDEqcg77aFSw
