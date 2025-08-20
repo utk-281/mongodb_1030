@@ -451,3 +451,49 @@ db.students.updateMany({}, { $mul: { salary: 2 } });
 db.students.updateOne({ rollNo: 'ABC1236' }, { $push: { hobbies: 'gaming' } });
 
 // https://excalidraw.com/#json=BCone4tLXiEPefKEvxHHl,QZ_0J6CF2fJDEqcg77aFSw
+
+db.students.updateOne({}, { $push: { hobbies: { $each: ['gaming', 'cooking'] } } });
+
+db.students.updateOne(
+  { rollNo: 'ABC1236' },
+  { $push: { hobbies: { $each: ['gaming', 'cooking'] } } }
+);
+
+db.students.updateOne(
+  { name: 'sirisha' },
+  { $addToSet: { hobbies: { $each: ['tennis', 'gaming', 'movies', 'cooking', 'football'] } } }
+);
+
+db.students.find().forEach((doc) => {
+  print(doc);
+});
+
+db.students.find().hasNext();
+
+let emp = {
+  _id: 'E001',
+  name: 'Arjun Meta',
+  skills: Array(3),
+  locationId: { city: '', state: '' },
+  contactId: { email: '', phone: '' },
+  departmentId: { name: '' },
+  projectIds: Array(2),
+  salary: 950000,
+  joinedDate: '2019-06-12T00:00:00.000+00:00',
+};
+
+db.employees.findOne({});
+
+db.employees.aggregate([
+  { $match: { name: 'Arjun Meta' } },
+  {
+    $lookup: {
+      from: 'locations',
+      localField: 'locationId',
+      foreignField: '_id',
+      as: 'locationDetails',
+    },
+  },
+]);
+
+// https://excalidraw.com/#json=sAN9KaaKD9oi2h3_yniIn,nIfF2wNEN2a98JdVZVoA5Q
