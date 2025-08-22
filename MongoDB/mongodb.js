@@ -497,3 +497,210 @@ db.employees.aggregate([
 ]);
 
 // https://excalidraw.com/#json=sAN9KaaKD9oi2h3_yniIn,nIfF2wNEN2a98JdVZVoA5Q
+
+// createCollection("collectionName")
+
+/*
+{
+  name:
+  age:
+  email:
+}
+*/
+
+db.createCollection('info', {
+  validator: {
+    // it will check the data before insertion
+    $jsonSchema: {
+      // using this we can create a schema
+      bsonType: 'object',
+      required: ['name', 'age', 'email'],
+      properties: {
+        name: {
+          bsonType: 'string',
+          description: 'must be a string and is required',
+        },
+        age: {
+          bsonType: 'int',
+        },
+        email: {
+          bsonType: 'string',
+          description: 'must be a string and is required',
+        },
+      },
+    },
+  },
+});
+
+db.info.insertOne({ name: 'chetna', age: 24, email: 'chetna@gmail.com' });
+
+/*
+{
+  name:
+  address:{
+    city:
+    pinCode:
+  }
+}
+*/
+
+db.createCollection('info2', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['name', 'address'],
+      properties: {
+        name: {
+          bsonType: 'string',
+        },
+        address: {
+          bsonType: 'object',
+          required: ['city', 'pinCode'],
+          properties: {
+            city: {
+              bsonType: 'string',
+            },
+            pinCode: {
+              bsonType: 'int',
+            },
+          },
+        },
+      },
+    },
+  },
+});
+
+/*
+{
+  name: "string"
+  skills:["string"]
+}
+*/
+
+db.createCollection('info3', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['name', 'skills'],
+      properties: {
+        name: {
+          bsonType: 'string',
+        },
+        skills: {
+          bsonType: 'array',
+          items: {
+            bsonType: 'string',
+          },
+        },
+      },
+    },
+  },
+});
+
+db.createCollection('info4', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['name', 'age', 'isMarried', 'hobbies', 'skills'],
+      properties: {
+        name: {
+          bsonType: 'string',
+        },
+        age: {
+          bsonType: 'int',
+        },
+        isMarried: {
+          bsonType: 'bool',
+        },
+        hobbies: {
+          bsonType: 'array',
+          items: {
+            bsonType: 'string',
+          },
+        },
+        skills: {
+          bsonType: 'object',
+          required: ['fE', 'bE', 'DB'],
+          properties: {
+            fE: {
+              bsonType: 'array',
+              items: {
+                bsonType: 'string',
+              },
+            },
+            bE: {
+              bsonType: 'array',
+              items: {
+                bsonType: 'string',
+              },
+            },
+            DB: {
+              bsonType: 'array',
+              items: {
+                bsonType: 'string',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+});
+
+db.emp.aggregate([
+  {
+    $match: {
+      job: 'clerk',
+    },
+  },
+  {
+    $project: {
+      empName: 1,
+      job: 1,
+      _id: 0,
+      sal: 1,
+    },
+  },
+]);
+
+// https://excalidraw.com/#json=yHdo4_zpjRezXvAD2BH-j,3YRjG9CISKprD4dJolhcuA
+
+db.emp.aggregate([
+  {
+    $match: { job: 'clerk' },
+  },
+]);
+
+// Q4) display all the employees name and salary whose salary lies in between 1200 and 2500.
+
+db.emp.aggregate([
+  {
+    $match: { $and: [{ sal: { $gt: 1200 } }, { sal: { $lt: 2500 } }] },
+  },
+]);
+
+db.emp.aggregate([
+  {
+    $group: {
+      _id: '$deptNo',
+      count: { $sum: 1 },
+      avgSal: { $avg: '$sal' },
+      maxSal: { $max: '$sal' },
+      minSal: { $min: '$sal' },
+      totalSal: { $sum: '$sal' },
+    },
+  },
+]);
+
+db.emp.aggregate([
+  {
+    $group: {
+      _id: 'keyName',
+      sum: { $sum: 'keyName' },
+      max: { $max: 'keyName' },
+      min: { $min: 'keyName' },
+      avg: { $avg: 'keyName' },
+      count: { $sum: 1 },
+    },
+  },
+]);
