@@ -704,3 +704,5 @@ db.emp.aggregate([
     },
   },
 ]);
+
+// https://excalidraw.com/#json=WJB5tLiPifR8dG9RM65aZ,YC9JlKDIKCNNuePokJIIUQ
