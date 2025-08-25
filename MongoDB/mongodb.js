@@ -191,9 +191,9 @@ db.students.insertOne({
 // example ==> 689196bcc0f735527450eb69
 
 //! it is further divided into 3 parts
-//? a) first 4 bytes (689196bc) ==> timestamp at which this document is created.
+//? a) first 4 bytes (689196bc) ==> timestamp at which this document is created.(epoch)
 
-//? b) next 5 bytes (c0f7355274) ==> it is a combination of machine Identifier (3 bytes) and process ID (2 bytes).
+//? b) next 5 bytes (c0f7355274) PUI ==> it is a combination of machine Identifier (3 bytes) and process ID (2 bytes).
 
 //? c) last 3 bytes (50eb69) ==> it starts with random value, and increment each time by 1 when ever a document gets inserted (counter)
 
@@ -232,7 +232,9 @@ db.students.insertMany([
 
 //! 9) to fetch/read single document -->
 // method name ==> findOne(), if no condition is provided, it will fetch the first document. and in case of condition, it will fetch the first document that matches the condition
+
 // db.collectionName.findOne({filter}, {projections}, {options})
+
 //TODO: options ==> sort, skip, limit
 
 //? {filter} ==> if you want to fetch based on some condition
@@ -308,9 +310,9 @@ db.students.deleteMany({}); // all documents will get deleted
 // ==> accumulator op (sum, avg, etc..)
 // ==> arithmetic and date op (add, subtract, month, year, etc..)
 //! projection operators ($, $slice... )
-//! geospatial operators (will not be covered)
+//! geospatial operators (will not be covered)(GeoJSON)
 
-db.emp.find({ dept: { $eq: 20 } });
+db.emp.find({ deptNo: { $eq: 20 } }, {}, {});
 
 db.emp.find({ sal: { $gt: 3500 } }, { empName: 1, sal: 1, _id: 0, dept: 0 });
 
@@ -706,3 +708,98 @@ db.emp.aggregate([
 ]);
 
 // https://excalidraw.com/#json=WJB5tLiPifR8dG9RM65aZ,YC9JlKDIKCNNuePokJIIUQ
+
+db.emp.aggregate([
+  {
+    $group: {
+      _id: '$deptNo',
+      count: { $sum: 1 },
+      avgSal: { $avg: '$sal' },
+      maxSal: { $max: '$sal' },
+      minSal: { $min: '$sal' },
+      totalSal: { $sum: '$sal' },
+    },
+  },
+  {
+    $project: {
+      deptNumber: '$_id', // aliasing
+      _id: 0,
+      count: 1,
+      maxSal: 1,
+    },
+  },
+]);
+
+db.emp.aggregate([
+  //! stage 1
+  {
+    $group: {
+      _id: '$deptNo',
+      numberOfEmp: { $sum: 1 },
+      names: { $push: '$name' },
+      designation: { $addToSet: '$job' }, // will only add unique values
+    },
+  },
+  //! stage 2
+  {
+    $project: {
+      deptNo: '$_id', //? aliasing
+      _id: 0,
+      numberOfEmp: 1,
+      names: 1,
+      designation: 1,
+    },
+  },
+]);
+//! name of employees
+
+db.emp.aggregate([
+  {
+    $match: {
+      name: { $regex: /a/ },
+    },
+  },
+  {
+    $group: {
+      _id: '$job',
+      count: { $sum: 1 },
+      avgSal: { $avg: '$sal' },
+      names: { $push: '$name' },
+    },
+  },
+  {
+    $project: {
+      avgSal: 1,
+      count: 1,
+      _id: 0,
+      job: '$_id',
+      names: 1,
+    },
+  },
+]);
+
+db.emp.aggregate([
+  {
+    $group: {
+      _id: '$deptNo',
+      count: { $sum: 1 },
+      avgSal: { $avg: '$sal' },
+      maxSal: { $max: '$sal' },
+    },
+  },
+  {
+    $match: {
+      maxSal: { $gt: 3000 }, //? here filter is working on grouped docs
+    },
+  },
+]);
+
+//! total salary needed to pay to all the employees
+db.emp.aggregate([
+  {
+    $group: {
+      _id: 'null', // here grouping will not there., all the documents will fall under one group which is null
+      sum: { $sum: '$sal' },
+    },
+  },
+]);
