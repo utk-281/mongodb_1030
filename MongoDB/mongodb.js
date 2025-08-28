@@ -803,3 +803,266 @@ db.emp.aggregate([
     },
   },
 ]);
+
+db.emp.aggregate([
+  {
+    $addFields: {
+      annualSal: { $multiply: ['$sal', 12] },
+    },
+  },
+]);
+
+db.emp.aggregate([
+  {
+    $addFields: {
+      monthlySal: { $multiply: ['$sal', 12] },
+    },
+  },
+  {
+    $addFields: {
+      totalSal: {
+        $add: ['$monthlySal', '$comm'],
+      },
+    },
+  },
+]);
+
+db.emp.aggregate([
+  //! stage-1
+  {
+    $addFields: {
+      midTermSal: { $multiply: ['$sal', 6] },
+    },
+  },
+  //! stage-2
+  {
+    $match: {
+      midTermSal: { $gt: 30000 },
+    },
+  },
+  //! stage-3
+  {
+    $project: {
+      name: 1,
+      job: 1,
+    },
+  },
+]);
+
+db.emp.aggregate([
+  // emp --> LC
+  {
+    $lookup: {
+      from: 'name of the collection which needs to be merged', // dept --> FC
+      foreignField: 'name of the field of FC (which holds common value)',
+      localField: 'name of the field of LC (which holds common value)',
+      as: 'aliasing',
+    },
+  },
+]);
+
+db.employees.aggregate([
+  {
+    $match: {
+      _id: 'E001',
+    },
+  },
+]);
+
+// ! display the details of arjun along with location details
+db.employees.aggregate([
+  {
+    $match: {
+      _id: 'E001',
+    },
+  },
+  {
+    $lookup: {
+      from: 'locations', // dept --> FC
+      foreignField: '_id',
+      localField: 'locationId',
+      as: 'locationId',
+    },
+  },
+  {
+    $unwind: '$locationId',
+  },
+  {
+    $lookup: {
+      from: 'contacts',
+      foreignField: '_id',
+      localField: 'contactId',
+      as: 'contactId',
+    },
+  },
+  {
+    $unwind: '$contactId',
+  },
+]);
+
+//! $unwind ==> used to remove array from a field
+/*
+{
+  $unwind : "$fieldName"
+}
+*/
+
+db.emp.aggregate([
+  {
+    $lookup: {
+      from: 'dept',
+      foreignField: 'deptNo',
+      localField: 'deptNo',
+      as: 'departmentDetails',
+    },
+  },
+  {
+    $unwind: '$departmentDetails',
+  },
+  {
+    $project: {
+      name: 1,
+      deptLoc: '$departmentDetails.loc', // aliasing
+      _id: 0,
+    },
+  },
+]);
+
+db.dept.aggregate([
+  {
+    $lookup: {
+      from: 'emp',
+      foreignField: 'deptNo',
+      localField: 'deptNo',
+      as: 'empDetails',
+    },
+  },
+  {
+    $unwind: '$empDetails',
+  },
+  {
+    $project: {
+      loc: 1,
+      empName: '$empDetails.name',
+      _id: 0,
+    },
+  },
+]);
+
+// display name of the employees and dept loc who are working in new york or dallas
+//! emp >> lookup >> match >> projection
+//! dept >> match >> lookup >> projection
+
+db.dept.aggregate([
+  {
+    $match: {
+      loc: { $in: ['new york', 'dallas'] },
+    },
+  },
+  {
+    $lookup: {
+      from: 'emp',
+      foreignField: 'deptNo',
+      localField: 'deptNo',
+      as: 'empDetails',
+    },
+  },
+  { $unwind: '$empDetails' },
+  {
+    $project: {
+      loc: 1,
+      name: '$empDetails.name',
+      _id: 0,
+    },
+  },
+]);
+// display dName and sal of all emp who are working in accounting whose salary is greater than 1500
+//? dept --> match >> lookup >> unwind >> match >> project
+db.dept.aggregate([
+  {
+    $match: { dName: 'accounting' },
+  },
+  {
+    $lookup: {
+      from: 'emp',
+      foreignField: 'deptNo',
+      localField: 'deptNo',
+      as: 'empDetails',
+    },
+  },
+  {
+    $unwind: '$empDetails',
+  },
+  {
+    $match: {
+      'empDetails.sal': { $gt: 2000 },
+    },
+  },
+  {
+    $project: {
+      dName: 1,
+      sal: '$empDetails.sal',
+      _id: 0,
+    },
+  },
+]);
+
+// show no.of emp getting sal <2k in deptNo 10
+
+// details of emp who are hired in the year 1982
+
+// details of emp who are hired in the month of feb
+
+//! eKart  --> user, cart, product
+db.products.insertMany([
+  {
+    name: 'Mobile',
+    price: 23000,
+    productID: '1234',
+  },
+  {
+    name: 'Laptop',
+    price: 89000,
+    productID: '2345',
+  },
+  {
+    name: 'Tablet',
+    price: 43000,
+    productID: '3456',
+  },
+]);
+
+db.carts.insertOne({
+  userId: 'utkarsh123',
+  prod1: '1234',
+  prod2: '3456',
+  cartId: 'cart12',
+});
+
+db.users.insertOne({
+  name: 'utkarsh',
+  phoneNo: 43567890,
+  cartRef: 'cart12',
+});
+
+db.users.aggregate([
+  {
+    $lookup: {
+      from: 'carts',
+      foreignField: 'cartId',
+      localField: 'cartRef',
+      as: 'cartDetails',
+    },
+  },
+  {
+    $unwind: '$cartDetails',
+  },
+  {
+    $lookup: {
+      from: 'products',
+      foreignField: 'productID',
+      localField: 'cartDetails.prod1',
+      as: 'cartDetails.prod1',
+    },
+  },
+]);
